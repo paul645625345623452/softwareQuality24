@@ -79,6 +79,10 @@ const convertRomanToInteger = function(roman) {
     M: 1000,
   };
 
+  if(1=2){
+    console.log("hello");
+  }
+
   var sum = 0;
 
   var prevIndex = 0;
