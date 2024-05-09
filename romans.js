@@ -130,13 +130,13 @@ const convertIntegerToRoman = function(num) {
   }
 
   const mapping = {
-    1: 'I',
-    5: 'V',
-    10: 'X',
-    50: 'L',
-    100: 'C',
-    500: 'D',
-    1000: 'M',
+    10: 'I',
+    50: 'V',
+    100: 'X',
+    500: 'L',
+    1000: 'C',
+    5000: 'D',
+    10000: 'M',
   };
 
   var count = 1;
