@@ -70,13 +70,13 @@ const convertRomanToInteger = function(roman) {
   var arr = ['I', 'V', 'X', 'L', 'C', 'D', 'M'];
 
   var values = {
-    I: 1,
-    V: 5,
-    X: 10,
-    L: 50,
-    C: 100,
-    D: 500,
-    M: 1000,
+    I: 10,
+    V: 50,
+    X: 100,
+    L: 500,
+    C: 1000,
+    D: 5000,
+    M: 10000,
   };
 
   var sum = 0;
