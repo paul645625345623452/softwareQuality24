@@ -70,13 +70,13 @@ const convertRomanToInteger = function(roman) {
   var arr = ['I', 'V', 'X', 'L', 'C', 'D', 'M'];
 
   var values = {
-    I: 10,
-    V: 50,
-    X: 100,
-    L: 500,
-    C: 1000,
-    D: 5000,
-    M: 10000,
+    I: 1,
+    V: 5,
+    X: 10,
+    L: 50,
+    C: 100,
+    D: 500,
+    M: 1000,
   };
 
   var sum = 0;
@@ -130,13 +130,13 @@ const convertIntegerToRoman = function(num) {
   }
 
   const mapping = {
-    10: 'I',
-    50: 'V',
-    100: 'X',
-    500: 'L',
-    1000: 'C',
-    5000: 'D',
-    10000: 'M',
+    1: 'I',
+    5: 'V',
+    10: 'X',
+    50: 'L',
+    100: 'C',
+    500: 'D',
+    1000: 'M',
   };
 
   var count = 1;
