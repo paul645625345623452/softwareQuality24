@@ -5,6 +5,7 @@
 /* eslint quotes: ["error", "single"] */
 /* eslint no-unused-vars: "off" */
 /* eslint semi: ["error", "always"] */
+/* global gtag */
 
 const INVALID_ROMAN = 'Please enter a valid roman';
 const INVALID_INTEGER = 'Please enter a valid integer';
@@ -37,17 +38,23 @@ function init() {
     var headerText = header.textContent;
     var outputValue = outputArea.textContent;
 
-    console.log('Header Text:', headerText);
-    console.log('Input Value:', inputValue);
-    console.log('Output Value:', outputValue);
+    // Log the values to the console (for debugging)
+    // console.log('Header Text:', headerText);
+    // console.log('Input Value:', inputValue);
+    // console.log('Output Value:', outputValue);
 
-    gtag('event', 'convert_button_click', {
-      'event_category': 'Conversion',
-      'event_label': 'Convert Button',
-      'header_text': headerText,
-      'input_value': inputValue,
-      'output_value': outputValue
-    });
+    // Send the event to Google Analytics
+    if (typeof gtag === 'function') {
+      gtag('event', 'convert_button_click', {
+        'event_category': 'Conversion',
+        'event_label': 'Convert Button',
+        'header_text': headerText,
+        'input_value': inputValue,
+        'output_value': outputValue
+      });
+    } else {
+      console.error('gtag is not defined');
+    }
   });
 }
 
