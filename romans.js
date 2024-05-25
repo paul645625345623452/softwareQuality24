@@ -7,10 +7,11 @@ function init() {
   
   // Load elements once to avoid repetition on every invocation
   var modeCheckbox = document.querySelector('input[type=\'checkbox\']');
-  var header = document.getElementById('header-text');
-  var convertButton = document.getElementById('convert-button');
-  var outputArea = document.getElementById('convert-output');
-  var inputArea = document.getElementById('conversion-input');
+  var header = document.querySelector('h1');
+  var convertButton = document.querySelector('.convert-button');
+  var outputArea = document.querySelector('.convert-output');
+  var inputArea = document.querySelector('input[type=\'text\']');
+
 
   modeCheckbox.addEventListener('change', function(e) {
     header.innerHTML = getModeTitle(e.target.checked);
@@ -34,25 +35,8 @@ function init() {
     } else {
       alert(convertion.message);
     }
-
-    // Get the values you need to track
-    var headerText = header.textContent;
-    var outputValue = outputArea.textContent;
-
-    // Log the values to the console (for debugging)
-    console.log('Header Text:', headerText);
-    console.log('Input Value:', inputValue);
-    console.log('Output Value:', outputValue);
-
-    // Send the event to Google Analytics
-    gtag('event', 'convert_button_click', {
-      'event_category': 'Conversion',
-      'event_label': 'Convert Button',
-      'header_text': headerText,
-      'input_value': inputValue,
-      'output_value': outputValue
-    });
   });
+
 }
 
 // Now the convertion methods receive both an input argument instead
@@ -229,4 +213,55 @@ const greaterThan9 = function(num, obj) {
       return obj[100] + obj[1000];
     } else {
       return obj[500] + obj[100].repeat(parseInt(num - 500) / 100);
-   
+    }
+  } else if (num >= 1000 && num < 5000) {
+    if (num === 1000) {
+      return obj[1000];
+    }
+    return obj[1000].repeat(parseInt(num / 1000));
+  }
+};
+
+if (!String.prototype.repeat) {
+  String.prototype.repeat = function(count) {
+    'use strict';
+    if (this == null) {
+      throw new TypeError('can\'t convert ' + this + ' to object');
+    }
+    var str = '' + this;
+    count = +count;
+    if (count != count) {
+      count = 0;
+    }
+    if (count < 0) {
+      throw new RangeError('repeat count must be non-negative');
+    }
+    if (count == Infinity) {
+      throw new RangeError('repeat count must be less than infinity');
+    }
+    count = Math.floor(count);
+    if (str.length == 0 || count == 0) {
+      return '';
+    }
+    // Ensuring count is a 31-bit integer allows us to heavily optimize the
+    // main part. But anyway, most current (August 2014) browsers can't handle
+    // strings 1 << 28 chars or longer, so:
+    if (str.length * count >= 1 << 28) {
+      throw new RangeError('repeat count must not overflow maximum string size');
+    }
+    var rpt = '';
+    for (;;) {
+      if ((count & 1) == 1) {
+        rpt += str;
+      }
+      count >>>= 1;
+      if (count == 0) {
+        break;
+      }
+      str += str;
+    }
+    // Could we try:
+    // return Array(count + 1).join(this);
+    return rpt;
+  };
+}
