@@ -1,31 +1,32 @@
-<html>
-  <head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-FQ1WNLT9QS"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FQ1WNLT9QS"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
-  gtag('config', 'G-FQ1WNLT9QS');
-</script>
-    <script src="romans.js"></script>
-    <link rel="stylesheet" href="romans.css">
-  </head>
-  <body onload="init()">
-    <main class="container">
-      <section class="content">
-        <h1>Roman To integer</h1>
-        <div class="group">
-          <input type="checkbox" name="mode-selector" />
-          <label for="mode-selector">Change Mode</label>
-        </div>
-        <div class="group">
-          <input type="text" name="conversion-input" />
-        </div>
-        <span class="convert-button">Convert</span>
-        <p class="convert-output"></p>
-      </section>
-    </main>
-  </body>
+    gtag('config', 'G-FQ1WNLT9QS');
+  </script>
+  <script src="romans.js"></script>
+  <link rel="stylesheet" href="romans.css">
+</head>
+<body onload="init()">
+  <main class="container">
+    <section class="content">
+      <h1 id="header-text">Roman To Integer</h1>
+      <div class="group">
+        <input type="checkbox" name="mode-selector" />
+        <label for="mode-selector">Change Mode</label>
+      </div>
+      <div class="group">
+        <input type="text" name="conversion-input" id="conversion-input" />
+      </div>
+      <button id="convert-button" class="convert-button">Convert</button>
+      <p class="convert-output" id="convert-output"></p>
+    </section>
+  </main>
+</body>
 </html>
