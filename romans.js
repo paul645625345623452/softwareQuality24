@@ -3,8 +3,8 @@ const INVALID_ROMAN = 'Please enter a valid roman';
 const INVALID_INTEGER = 'Please enter a valid integer';
 const OUT_OF_RANGE = 'Out of range (1-3999)';
 
-function init() { 
-  
+function init() {
+
   // Load elements once to avoid repetition on every invocation
   var modeCheckbox = document.querySelector('input[type=\'checkbox\']');
   var header = document.querySelector('h1');
@@ -13,11 +13,11 @@ function init() {
   var inputArea = document.querySelector('input[type=\'text\']');
 
 
-  modeCheckbox.addEventListener('change', function(e) {
+  modeCheckbox.addEventListener('change', function (e) {
     header.innerHTML = getModeTitle(e.target.checked);
   });
 
-  const getModeTitle = function(integerToRoman) {
+  const getModeTitle = function (integerToRoman) {
     return integerToRoman ? 'Integer To Roman' : 'Roman To Integer';
   };
 
@@ -27,13 +27,28 @@ function init() {
   // 2 - Write the UI output (outputArea.innerHTML)
   // 3 - Show error messages
   // This is cleaner and also removes code duplications
-  convertButton.addEventListener('click', function() {
+  convertButton.addEventListener('click', function () {
     var inputValue = inputArea.value;
     var convertion = modeCheckbox.checked ? convertIntegerToRoman(inputValue) : convertRomanToInteger(inputValue);
     if (convertion.result) {
       outputArea.innerHTML = convertion.value;
+
+      // Google Analytics event for successful conversion
+      gtag('event', 'conversion_success', {
+        'conversionType': modeCheckbox.checked ? 'IntegerToRoman' : 'RomanToInteger',
+        'inputValue': inputValue,
+        'outputValue': conversion.value
+      });
+
     } else {
       alert(convertion.message);
+
+      // Google Analytics event for conversion error
+      gtag('event', 'conversion_error', {
+        'conversionType': modeCheckbox.checked ? 'IntegerToRoman' : 'RomanToInteger',
+        'inputValue': inputValue,
+        'errorMessage': conversion.message
+      });
     }
   });
 
@@ -44,12 +59,12 @@ function init() {
 // On top of that, they return a JSON object instead of updating the
 // UI directly. The JSON object contains the result (ok/nok), the value
 // and an error message if needed
-const convertRomanToInteger = function(roman) {
+const convertRomanToInteger = function (roman) {
 
   var response = {
-    value: 0, 
+    value: 0,
     message: '',
-    result: false 
+    result: false
   };
 
   // Regexp to check if a string is a valid roman number
@@ -105,12 +120,12 @@ const convertRomanToInteger = function(roman) {
 // On top of that, they return a JSON object instead of updating the
 // UI directly. The JSON object contains the result (ok/nok), the value
 // and an error message if needed
-const convertIntegerToRoman = function(num) {
+const convertIntegerToRoman = function (num) {
 
   var response = {
     value: 0,
-    message: '', 
-    result: false 
+    message: '',
+    result: false
   };
 
   // Regexp to check the input is a valid integer
@@ -127,7 +142,7 @@ const convertIntegerToRoman = function(num) {
   // Integer not in the supported range -> exit with the right message
   if (Number(num) > 3999 || Number(num) < 1) {
     response.message = OUT_OF_RANGE;
-    return response;   
+    return response;
   }
 
   const mapping = {
@@ -161,7 +176,7 @@ const convertIntegerToRoman = function(num) {
   return response;
 };
 
-const lessThan9 = function(num, obj) {
+const lessThan9 = function (num, obj) {
   if (num === 9) {
     return obj[1] + obj[10];
   } else if (num >= 5 && num < 9) {
@@ -173,7 +188,7 @@ const lessThan9 = function(num, obj) {
   }
 };
 
-const greaterThan9 = function(num, obj) {
+const greaterThan9 = function (num, obj) {
   if (num >= 10 && num < 50) {
     if (num === 10) {
       return obj[10];
@@ -223,7 +238,7 @@ const greaterThan9 = function(num, obj) {
 };
 
 if (!String.prototype.repeat) {
-  String.prototype.repeat = function(count) {
+  String.prototype.repeat = function (count) {
     'use strict';
     if (this == null) {
       throw new TypeError('can\'t convert ' + this + ' to object');
@@ -250,7 +265,7 @@ if (!String.prototype.repeat) {
       throw new RangeError('repeat count must not overflow maximum string size');
     }
     var rpt = '';
-    for (;;) {
+    for (; ;) {
       if ((count & 1) == 1) {
         rpt += str;
       }
