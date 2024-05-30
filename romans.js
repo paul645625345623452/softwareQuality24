@@ -3,6 +3,13 @@ const INVALID_ROMAN = 'Please enter a valid roman';
 const INVALID_INTEGER = 'Please enter a valid integer';
 const OUT_OF_RANGE = 'Out of range (1-3999)';
 
+//GA stuff for lint to be happy
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', 'G-FQ1WNLT9QS');
+
 function init() {
 
   // Load elements once to avoid repetition on every invocation
