@@ -33,29 +33,15 @@ function init() {
     if (convertion.result) {
       outputArea.innerHTML = convertion.value;
 
-      // Google Analytics event for successful conversion
-      gtag('event', 'conversion_success', {
-        'conversionType': modeCheckbox.checked ? 'IntegerToRoman' : 'RomanToInteger',
-        'inputValue': inputValue,
-        'outputValue': conversion.value
-      });
-
     } else {
       alert(convertion.message);
-
-      // Google Analytics event for conversion error
-      gtag('event', 'conversion_error', {
-        'conversionType': modeCheckbox.checked ? 'IntegerToRoman' : 'RomanToInteger',
-        'inputValue': inputValue,
-        'errorMessage': conversion.message
-      });
     }
   });
 
 }
 
 // Google Analytics event for page load
-gtag('event', 'page_load', {
+gtag('event', 'page_loadtestabc', {
   'page_title': document.title,
   'page_path': window.location.pathname
 });
