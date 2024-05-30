@@ -40,12 +40,6 @@ function init() {
 
 }
 
-// Google Analytics event for page load
-gtag('event', 'page_loadtestabc', {
-  'page_title': document.title,
-  'page_path': window.location.pathname
-});
-
 // Now the convertion methods receive both an input argument instead
 // of reading directly from the UI.
 // On top of that, they return a JSON object instead of updating the
